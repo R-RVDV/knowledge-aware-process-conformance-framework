@@ -7,9 +7,7 @@ Object-Centric Event Data (OCED) for Process Diagnosis in SAP Environments* (Utr
 It contains the code to rebuild the Knowledge Graph (KG) from the anonymised SAP tables, to run
 the conformance checks (model-wide OCBC conformance) and to repeat the evaluation (synthetic injection, succinctness analysis).
 
-# Proof-of-Concept Tool
-
-For the Proof-of-Concept Tool navigate to: https://github.com/R-RVDV/p2p-poc
+For the associated Proof-of-Concept tool navigate to: https://github.com/R-RVDV/p2p-poc
  
 ## Repository layout
  
