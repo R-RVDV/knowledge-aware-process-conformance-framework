@@ -1,0 +1,4 @@
+.venv/
+__pycache__/
+*.pyc
+preprocessing/sap_data/01_raw/

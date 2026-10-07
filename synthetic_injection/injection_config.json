@@ -1,0 +1,98 @@
+{
+  "B1": {
+    "description": "Remove ext:isDeliveredBy triple between PO and GR",
+    "injection_type": "remove_triple",
+    "selected": [
+      {"po": "http://emixa.nl/p2p/resource/PO_4500000148", "gr": "http://emixa.nl/p2p/resource/GR_5000000260_2020"},
+      {"po": "http://emixa.nl/p2p/resource/PO_4500000161", "gr": "http://emixa.nl/p2p/resource/GR_5000000301_2021"},
+      {"po": "http://emixa.nl/p2p/resource/PO_4500000162", "gr": "http://emixa.nl/p2p/resource/GR_5000000302_2021"},
+      {"po": "http://emixa.nl/p2p/resource/PO_4500000165", "gr": "http://emixa.nl/p2p/resource/GR_5000000311_2021"}
+    ]
+  },
+  "B2": {
+    "description": "Remove all ext:isDeliveredBy triples from the PO (different POs than B1 and B4)",
+    "injection_type": "remove_all_isDeliveredBy",
+    "selected": [
+      {"po": "http://emixa.nl/p2p/resource/PO_4500000318", "invoice": "http://emixa.nl/p2p/resource/Inv_2023_5105600147", "gr": "http://emixa.nl/p2p/resource/GR_5000000690_2023"},
+      {"po": "http://emixa.nl/p2p/resource/PO_4500000179", "invoice": "http://emixa.nl/p2p/resource/Inv_2021_5105600127", "gr": "http://emixa.nl/p2p/resource/GR_5000000325_2021"},
+      {"po": "http://emixa.nl/p2p/resource/PO_4500000185", "invoice": "http://emixa.nl/p2p/resource/Inv_2021_5105600128", "gr": "http://emixa.nl/p2p/resource/GR_5000000336_2021"},
+      {"po": "http://emixa.nl/p2p/resource/PO_4500000215", "invoice": "http://emixa.nl/p2p/resource/Inv_2021_5105600131", "gr": "http://emixa.nl/p2p/resource/GR_5000000390_2021"}
+    ]
+  },
+  "B3": {
+    "description": "Remove all triples of the RecordInvoice event",
+    "injection_type": "remove_event",
+    "selected": [
+      {"invoice": "http://emixa.nl/p2p/resource/Inv_2020_5105600101", "fi": "http://emixa.nl/p2p/resource/FI_1000_2020_5100000000", "inv_event": "http://emixa.nl/p2p/resource/Ev_RecordInv_2020_5105600101"},
+      {"invoice": "http://emixa.nl/p2p/resource/Inv_2020_5105600102", "fi": "http://emixa.nl/p2p/resource/FI_1000_2020_5100000001", "inv_event": "http://emixa.nl/p2p/resource/Ev_RecordInv_2020_5105600102"},
+      {"invoice": "http://emixa.nl/p2p/resource/Inv_2020_5105600103", "fi": "http://emixa.nl/p2p/resource/FI_1000_2020_5100000002", "inv_event": "http://emixa.nl/p2p/resource/Ev_RecordInv_2020_5105600103"},
+      {"invoice": "http://emixa.nl/p2p/resource/Inv_2020_5105600104", "fi": "http://emixa.nl/p2p/resource/FI_1000_2020_5100000003", "inv_event": "http://emixa.nl/p2p/resource/Ev_RecordInv_2020_5105600104"}
+    ]
+  },
+  "B4": {
+    "description": "Remove all ext:isDeliveredBy triples from the PO (different POs than B1 and B2)",
+    "injection_type": "remove_all_isDeliveredBy",
+    "selected": [
+      {"po": "http://emixa.nl/p2p/resource/PO_4500000236", "gr": "http://emixa.nl/p2p/resource/GR_5000000452_2021", "invoice": "http://emixa.nl/p2p/resource/Inv_2021_5105600136"},
+      {"po": "http://emixa.nl/p2p/resource/PO_4500000323", "gr": "http://emixa.nl/p2p/resource/GR_5000000740_2024", "invoice": "http://emixa.nl/p2p/resource/Inv_2024_5105600151"},
+      {"po": "http://emixa.nl/p2p/resource/PO_4500000308", "gr": "http://emixa.nl/p2p/resource/GR_5000000660_2023", "invoice": "http://emixa.nl/p2p/resource/Inv_2023_5105600139"},
+      {"po": "http://emixa.nl/p2p/resource/PO_4500000310", "gr": "http://emixa.nl/p2p/resource/GR_5000000661_2023", "invoice": "http://emixa.nl/p2p/resource/Inv_2023_5105600141"}
+    ]
+  },
+  "D4": {
+    "description": "Change ext:vendorId on Invoice to VENDOR_INJECTED",
+    "injection_type": "change_vendor_id",
+    "selected": [
+      {"po": "http://emixa.nl/p2p/resource/PO_4500000043", "invoice": "http://emixa.nl/p2p/resource/Inv_2020_5105600113", "po_vendor": "VND_0001", "inv_vendor": "VND_0001"},
+      {"po": "http://emixa.nl/p2p/resource/PO_4500000049", "invoice": "http://emixa.nl/p2p/resource/Inv_2020_5105600114", "po_vendor": "VND_0001", "inv_vendor": "VND_0001"},
+      {"po": "http://emixa.nl/p2p/resource/PO_4500000096", "invoice": "http://emixa.nl/p2p/resource/Inv_2020_5105600118", "po_vendor": "VND_0001", "inv_vendor": "VND_0001"},
+      {"po": "http://emixa.nl/p2p/resource/PO_4500000153", "invoice": "http://emixa.nl/p2p/resource/Inv_2020_5105600120", "po_vendor": "VND_0001", "inv_vendor": "VND_0001"}
+    ]
+  },
+  "D6": {
+    "description": "Set ext:netAmount on Invoice to poValue * 2.0",
+    "injection_type": "change_net_amount",
+    "selected": [
+      {"po": "http://emixa.nl/p2p/resource/PO_4500000027", "invoice": "http://emixa.nl/p2p/resource/Inv_2020_5105600102", "po_value": "1000.0", "inv_amount": "100.0"},
+      {"po": "http://emixa.nl/p2p/resource/PO_4500000031", "invoice": "http://emixa.nl/p2p/resource/Inv_2020_5105600112", "po_value": "50.0",   "inv_amount": "50.0"},
+      {"po": "http://emixa.nl/p2p/resource/PO_4500000091", "invoice": "http://emixa.nl/p2p/resource/Inv_2020_5105600116", "po_value": "2000.0", "inv_amount": "2000.0"},
+      {"po": "http://emixa.nl/p2p/resource/PO_4500000029", "invoice": "http://emixa.nl/p2p/resource/Inv_2020_5105600110", "po_value": "30000.0","inv_amount": "30000.0"}
+    ]
+  },
+  "S1": {
+    "description": "Set ext:userName of RecordInvoice event equal to po_user",
+    "injection_type": "change_username",
+    "target_event_key": "inv_event",
+    "new_user_key": "po_user",
+    "selected": [
+      {"po": "http://emixa.nl/p2p/resource/PO_4500000043",  "invoice": "http://emixa.nl/p2p/resource/Inv_2020_5105600113",  "po_event": "http://emixa.nl/p2p/resource/Ev_CreatePO_4500000043",  "inv_event": "http://emixa.nl/p2p/resource/Ev_RecordInv_2020_5105600113",  "po_user": "User_058", "inv_user": "User_006"},
+      {"po": "http://emixa.nl/p2p/resource/PO_4500000236",  "invoice": "http://emixa.nl/p2p/resource/Inv_2021_5105600136",  "po_event": "http://emixa.nl/p2p/resource/Ev_CreatePO_4500000236",  "inv_event": "http://emixa.nl/p2p/resource/Ev_RecordInv_2021_5105600136",  "po_user": "User_072", "inv_user": "User_073"},
+      {"po": "http://emixa.nl/p2p/resource/PO_4500000274",  "invoice": "http://emixa.nl/p2p/resource/Inv_2022_5105600137",  "po_event": "http://emixa.nl/p2p/resource/Ev_CreatePO_4500000274",  "inv_event": "http://emixa.nl/p2p/resource/Ev_RecordInv_2022_5105600137",  "po_user": "User_032", "inv_user": "User_044"},
+      {"po": "http://emixa.nl/p2p/resource/PO_4500000211",  "invoice": "http://emixa.nl/p2p/resource/Inv_2022_5105600138",  "po_event": "http://emixa.nl/p2p/resource/Ev_CreatePO_4500000211",  "inv_event": "http://emixa.nl/p2p/resource/Ev_RecordInv_2022_5105600138",  "po_user": "User_032", "inv_user": "User_040"}
+    ]
+  },
+  "S3": {
+    "description": "Set ext:userName of ClearInvoice event equal to inv_user — creates new S3 violation (inv_user = clr_user)",
+    "injection_type": "change_clr_username",
+    "target_event_key": "clr_event",
+    "new_user_key": "inv_user",
+    "selected": [
+      {"invoice": "http://emixa.nl/p2p/resource/Inv_2020_5105600105", "fi": "http://emixa.nl/p2p/resource/FI_1000_2020_5100000004", "inv_event": "http://emixa.nl/p2p/resource/Ev_RecordInv_2020_5105600105", "clr_event": "http://emixa.nl/p2p/resource/Ev_ClearInv_1000_2020_5100000004", "inv_user": "User_044", "clr_user": "User_044"},
+      {"invoice": "http://emixa.nl/p2p/resource/Inv_2020_5105600106", "fi": "http://emixa.nl/p2p/resource/FI_1000_2020_5100000005", "inv_event": "http://emixa.nl/p2p/resource/Ev_RecordInv_2020_5105600106", "clr_event": "http://emixa.nl/p2p/resource/Ev_ClearInv_1000_2020_5100000005", "inv_user": "User_044", "clr_user": "User_044"},
+      {"invoice": "http://emixa.nl/p2p/resource/Inv_2020_5105600107", "fi": "http://emixa.nl/p2p/resource/FI_1000_2020_5100000006", "inv_event": "http://emixa.nl/p2p/resource/Ev_RecordInv_2020_5105600107", "clr_event": "http://emixa.nl/p2p/resource/Ev_ClearInv_1000_2020_5100000006", "inv_user": "User_044", "clr_user": "User_044"},
+      {"invoice": "http://emixa.nl/p2p/resource/Inv_2020_5105600108", "fi": "http://emixa.nl/p2p/resource/FI_1000_2020_5100000007", "inv_event": "http://emixa.nl/p2p/resource/Ev_RecordInv_2020_5105600108", "clr_event": "http://emixa.nl/p2p/resource/Ev_ClearInv_1000_2020_5100000007", "inv_user": "User_044", "clr_user": "User_044"}
+    ]
+  },
+  "S5": {
+    "description": "Set ext:userName of RecordGoodsReceipt event equal to po_user",
+    "injection_type": "change_username",
+    "target_event_key": "gr_event",
+    "new_user_key": "po_user",
+    "selected": [
+      {"po": "http://emixa.nl/p2p/resource/PO_4500000012",  "gr": "http://emixa.nl/p2p/resource/GR_5000000013_2019",  "po_event": "http://emixa.nl/p2p/resource/Ev_CreatePO_4500000012",  "gr_event": "http://emixa.nl/p2p/resource/Ev_RecordGR_5000000013_2019",  "po_user": "User_021", "gr_user": "User_058"},
+      {"po": "http://emixa.nl/p2p/resource/PO_4500000014",  "gr": "http://emixa.nl/p2p/resource/GR_5000000031_2020",  "po_event": "http://emixa.nl/p2p/resource/Ev_CreatePO_4500000014",  "gr_event": "http://emixa.nl/p2p/resource/Ev_RecordGR_5000000031_2020",  "po_user": "User_002", "gr_user": "User_004"},
+      {"po": "http://emixa.nl/p2p/resource/PO_4500000097",  "gr": "http://emixa.nl/p2p/resource/GR_5000000100_2020",  "po_event": "http://emixa.nl/p2p/resource/Ev_CreatePO_4500000097",  "gr_event": "http://emixa.nl/p2p/resource/Ev_RecordGR_5000000100_2020",  "po_user": "User_025", "gr_user": "User_005"},
+      {"po": "http://emixa.nl/p2p/resource/PO_4500000237",  "gr": "http://emixa.nl/p2p/resource/GR_5000000454_2021",  "po_event": "http://emixa.nl/p2p/resource/Ev_CreatePO_4500000237",  "gr_event": "http://emixa.nl/p2p/resource/Ev_RecordGR_5000000454_2021",  "po_user": "User_072", "gr_user": "User_002"}
+    ]
+  }
+}

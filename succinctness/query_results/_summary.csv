@@ -1,0 +1,10 @@
+query,violation_count,status
+B1_gr_without_po,0,OK
+B2_invoice_before_gr,5,OK
+B3_payment_before_invoice,0,OK
+B4_payment_without_gr,5,OK
+D4_vendor_mismatch,0,OK
+D6_amount_tolerance,5,OK
+S1_po_creator_is_invoice_enterer,50,OK
+S3_invoice_enterer_is_payment_poster,53,OK
+S5_po_creator_is_gr_poster,193,OK
