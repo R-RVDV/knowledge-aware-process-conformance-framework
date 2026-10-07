@@ -429,7 +429,7 @@ def build_graph():
     g.serialize(destination=OUTPUT_FILE, format="turtle")
     print(f"\n🚀 SUCCESS! OCEDR graph saved as '{OUTPUT_FILE}'")
     print(f"📊 Total number of data triples: {len(g)}")
-    print(f"   (schema triples are in emixa_p2p_ocedd_v6_4.ttl, not in this file)")
+    print(f"   (schema triples are in emixa_p2p_ocedd.ttl, not in this file)")
 
 
 if __name__ == "__main__":

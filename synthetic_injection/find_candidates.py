@@ -20,7 +20,7 @@ OCED = Namespace("https://w3id.org/ocedo/core#")
 REPO_ROOT = Path(__file__).parent.parent
 
 g = Graph()
-g.parse(str(REPO_ROOT / "emixa_p2p_ocedd_v6_4.ttl"), format="turtle")
+g.parse(str(REPO_ROOT / "emixa_p2p_ocedd.ttl"), format="turtle")
 g.parse(str(REPO_ROOT / "ocedr_p2p_graph.ttl"),      format="turtle")
 print(f"Loaded: {len(g)} triples\n")
 

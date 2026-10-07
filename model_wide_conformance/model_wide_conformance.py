@@ -29,7 +29,7 @@ from sparql_queries import (
 
 # Default paths: see the layout in the module docstring
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
-DEFAULT_SCHEMA_PATH = PROJECT_ROOT / "emixa_p2p_ocedd_v6_4.ttl"
+DEFAULT_SCHEMA_PATH = PROJECT_ROOT / "emixa_p2p_ocedd.ttl"
 DEFAULT_DATA_PATH = PROJECT_ROOT / "ocedr_p2p_graph.ttl"
 
 EXT = Namespace("http://emixa.nl/p2p/domain#")

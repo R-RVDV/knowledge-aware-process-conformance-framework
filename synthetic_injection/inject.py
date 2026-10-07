@@ -28,7 +28,7 @@ OCED = Namespace("https://w3id.org/ocedo/core#")
 
 BASE      = Path(__file__).parent
 REPO_ROOT = BASE.parent
-SCHEMA    = str(REPO_ROOT / "emixa_p2p_ocedd_v6_4.ttl")
+SCHEMA    = str(REPO_ROOT / "emixa_p2p_ocedd.ttl")
 ORIGINAL  = str(REPO_ROOT / "ocedr_p2p_graph.ttl")
 OUT_DIR   = BASE / "injected"
 OUT_DIR.mkdir(exist_ok=True)
