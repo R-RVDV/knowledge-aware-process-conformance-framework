@@ -5,7 +5,7 @@ Object-Centric Event Data (OCED) for Process Diagnosis in SAP Environments* (Utr
 2026, in cooperation with Emixa).
  
 It contains the code to rebuild the Knowledge Graph (KG) from the anonymised SAP tables, to run
-the conformance checks (model-wide OCBC conformance), to repeat the evaluation (synthetic injection, succinctness analysis) and the proof-of-concept tool.
+the conformance checks (model-wide OCBC conformance) and to repeat the evaluation (synthetic injection, succinctness analysis).
  
 ## Repository layout
  
