@@ -215,16 +215,21 @@ print(f"S1 candidates: {len(rows)}")
 
 # ══════════════════════════════════════════════════════════════════
 # S3 — Invoice enterer ≠ payment poster
-# Injection: set userName of RecordInvoice event to a different user
-#           (not the payment poster) so that a NEW violation arises.
+# A violation exists when the RecordInvoice event and the ClearInvoice event
+# of an invoice carry the SAME userName.
 #
-# Reason for the reversed approach:
-#   The baseline already shows 53 S3 violations because nearly all
-#   Invoice-FI pairs have the same userName. There are hardly any pairs
-#   without an existing violation to inject on. Solution: look for pairs
-#   where users ARE equal and change the inv_user to a
-#   unique injection value 'User_INJECTED_S3', so that it becomes a
-#   new detectable violation on top of the baseline.
+# Injection: for each selected invoice-FI pair, set the userName of BOTH the
+#           RecordInvoice event and the ClearInvoice event to the same
+#           unique marker value 'User_INJ_S3_<n>'.
+#
+# Reason for this approach:
+#   The baseline already contains 53 S3 violations, because nearly all
+#   invoice-FI pairs have the same userName. There are hardly any pairs
+#   without an existing violation to inject on.
+#   Solution: select pairs where the users ARE already equal and rename both
+#   users to a unique marker value. The pair remains a violation (so the S3
+#   total does not increase), but it becomes individually identifiable in the
+#   query result, which allows precision and recall to be measured.
 # ══════════════════════════════════════════════════════════════════
 rows = list(g.query("""
 PREFIX ext:  <http://emixa.nl/p2p/domain#>
