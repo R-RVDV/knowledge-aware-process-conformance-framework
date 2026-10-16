@@ -1,7 +1,6 @@
 # Knowledge-Aware Conformance Checking: Replication Package
  
-Replication package of the master thesis *Knowledge-Aware Conformance Checking: Leveraging
-Object-Centric Event Data (OCED) for Process Diagnosis in SAP Environments* (Utrecht University,
+Replication package of the master thesis *Knowledge-Aware Conformance Checking: Integrating Object-Centric Event Data and Behavioral Constraints for Process Diagnosis in SAP* (Utrecht University,
 2026, in cooperation with Emixa).
  
 It contains the code to rebuild the Knowledge Graph (KG) from the anonymised SAP tables, to run
