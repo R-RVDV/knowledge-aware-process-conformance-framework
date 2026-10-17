@@ -1,8 +1,8 @@
 """
 run_sql_queries.py
 -------------------
-Runs the 9 SQL equivalents of the SPARQL conformance queries (B1-B4, D4, D6,
-S1, S3, S5) against the anonymized SAP CSV tables, for the succinctness
+Runs the 9 SQL equivalents of the SPARQL conformance queries (B1-B4, D1, D2,
+S1, S2, S3) against the anonymized SAP CSV tables, for the succinctness
 validation study (checking that the SQL translation returns sensible /
 comparable results to the SPARQL versions on the OCEDR Knowledge Graph).
 
@@ -159,7 +159,7 @@ QUERIES = {
         ORDER BY amount DESC
     """,
 
-    "D4_vendor_mismatch": """
+    "D1_vendor_mismatch": """
         SELECT
             rb.BELNR   AS invoice,
             ekko.EBELN AS po,
@@ -177,7 +177,7 @@ QUERIES = {
         ORDER BY amount DESC
     """,
 
-    "D6_amount_tolerance": """
+    "D2_amount_tolerance": """
         SELECT DISTINCT
             rb.BELNR   AS invoice,
             ekko.EBELN AS po,
@@ -214,7 +214,7 @@ QUERIES = {
         ORDER BY user_name, po_date
     """,
 
-    "S3_invoice_enterer_is_payment_poster": """
+    "S2_invoice_enterer_is_payment_poster": """
         SELECT
             rb.USNAM AS user_name,
             rb.BELNR AS invoice,
@@ -228,7 +228,7 @@ QUERIES = {
         ORDER BY user_name, invoice_date
     """,
 
-    "S5_po_creator_is_gr_poster": """
+    "S3_po_creator_is_gr_poster": """
         SELECT DISTINCT
             ekko.ERNAM AS user_name,
             ekko.EBELN AS po,

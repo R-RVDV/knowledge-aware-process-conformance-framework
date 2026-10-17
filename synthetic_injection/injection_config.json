@@ -39,7 +39,7 @@
       {"po": "http://emixa.nl/p2p/resource/PO_4500000310", "gr": "http://emixa.nl/p2p/resource/GR_5000000661_2023", "invoice": "http://emixa.nl/p2p/resource/Inv_2023_5105600141"}
     ]
   },
-  "D4": {
+  "D1": {
     "description": "Change ext:vendorId on Invoice to VENDOR_INJECTED",
     "injection_type": "change_vendor_id",
     "selected": [
@@ -49,7 +49,7 @@
       {"po": "http://emixa.nl/p2p/resource/PO_4500000153", "invoice": "http://emixa.nl/p2p/resource/Inv_2020_5105600120", "po_vendor": "VND_0001", "inv_vendor": "VND_0001"}
     ]
   },
-  "D6": {
+  "D2": {
     "description": "Set ext:netAmount on Invoice to poValue * 2.0",
     "injection_type": "change_net_amount",
     "selected": [
@@ -71,8 +71,8 @@
       {"po": "http://emixa.nl/p2p/resource/PO_4500000211",  "invoice": "http://emixa.nl/p2p/resource/Inv_2022_5105600138",  "po_event": "http://emixa.nl/p2p/resource/Ev_CreatePO_4500000211",  "inv_event": "http://emixa.nl/p2p/resource/Ev_RecordInv_2022_5105600138",  "po_user": "User_032", "inv_user": "User_040"}
     ]
   },
-  "S3": {
-    "description": "Set ext:userName of ClearInvoice event equal to inv_user — creates new S3 violation (inv_user = clr_user)",
+  "S2": {
+    "description": "Set ext:userName of ClearInvoice event equal to inv_user — creates new S2 violation (inv_user = clr_user)",
     "injection_type": "change_clr_username",
     "target_event_key": "clr_event",
     "new_user_key": "inv_user",
@@ -83,7 +83,7 @@
       {"invoice": "http://emixa.nl/p2p/resource/Inv_2020_5105600108", "fi": "http://emixa.nl/p2p/resource/FI_1000_2020_5100000007", "inv_event": "http://emixa.nl/p2p/resource/Ev_RecordInv_2020_5105600108", "clr_event": "http://emixa.nl/p2p/resource/Ev_ClearInv_1000_2020_5100000007", "inv_user": "User_044", "clr_user": "User_044"}
     ]
   },
-  "S5": {
+  "S3": {
     "description": "Set ext:userName of RecordGoodsReceipt event equal to po_user",
     "injection_type": "change_username",
     "target_event_key": "gr_event",

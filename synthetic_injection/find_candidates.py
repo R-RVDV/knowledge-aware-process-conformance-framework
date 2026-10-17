@@ -128,7 +128,7 @@ candidates["B4"] = {
 print(f"B4 candidates: {len(rows)}")
 
 # ══════════════════════════════════════════════════════════════════
-# D4 — Vendor invoice = vendor PO
+# D1 — Vendor invoice = vendor PO
 # Injection: change ext:vendorId on Invoice to 'VENDOR_INJECTED'
 # Candidate: Invoice-PO pair where vendors match
 # ══════════════════════════════════════════════════════════════════
@@ -144,19 +144,19 @@ SELECT DISTINCT ?po ?invoice ?poVendor ?invVendor WHERE {
 }
 LIMIT 20
 """))
-candidates["D4"] = {
+candidates["D1"] = {
     "description": "Change ext:vendorId on Invoice to 'VENDOR_INJECTED'",
     "injection_type": "change_vendor_id",
     "candidates": [{"po": str(r.po), "invoice": str(r.invoice),
                     "po_vendor": str(r.poVendor), "inv_vendor": str(r.invVendor)} for r in rows],
     "selected": []
 }
-print(f"D4 candidates: {len(rows)}")
+print(f"D1 candidates: {len(rows)}")
 
 # ══════════════════════════════════════════════════════════════════
-# D6 — Invoice amount ≤ PO value + tolerance
+# D2 — Invoice amount ≤ PO value + tolerance
 # Injection: raise ext:netAmount on Invoice to poValue * 2.0
-# Candidate: Invoice-PO pair without existing D6 violation (ratio ≤ 1.05)
+# Candidate: Invoice-PO pair without existing D2 violation (ratio ≤ 1.05)
 # ══════════════════════════════════════════════════════════════════
 rows = list(g.query("""
 PREFIX ext: <http://emixa.nl/p2p/domain#>
@@ -172,14 +172,14 @@ SELECT DISTINCT ?po ?invoice ?poValue ?invAmount WHERE {
 }
 LIMIT 20
 """))
-candidates["D6"] = {
+candidates["D2"] = {
     "description": "Set ext:netAmount on Invoice to poValue * 2.0 (well above tolerance)",
     "injection_type": "change_net_amount",
     "candidates": [{"po": str(r.po), "invoice": str(r.invoice),
                     "po_value": str(r.poValue), "inv_amount": str(r.invAmount)} for r in rows],
     "selected": []
 }
-print(f"D6 candidates: {len(rows)}")
+print(f"D2 candidates: {len(rows)}")
 
 # ══════════════════════════════════════════════════════════════════
 # S1 — PO creator ≠ invoice enterer
@@ -214,20 +214,20 @@ candidates["S1"] = {
 print(f"S1 candidates: {len(rows)}")
 
 # ══════════════════════════════════════════════════════════════════
-# S3 — Invoice enterer ≠ payment poster
+# S2 — Invoice enterer ≠ payment poster
 # A violation exists when the RecordInvoice event and the ClearInvoice event
 # of an invoice carry the SAME userName.
 #
 # Injection: for each selected invoice-FI pair, set the userName of BOTH the
 #           RecordInvoice event and the ClearInvoice event to the same
-#           unique marker value 'User_INJ_S3_<n>'.
+#           unique marker value 'User_INJ_S2_<n>'.
 #
 # Reason for this approach:
-#   The baseline already contains 53 S3 violations, because nearly all
+#   The baseline already contains 53 S2 violations, because nearly all
 #   invoice-FI pairs have the same userName. There are hardly any pairs
 #   without an existing violation to inject on.
 #   Solution: select pairs where the users ARE already equal and rename both
-#   users to a unique marker value. The pair remains a violation (so the S3
+#   users to a unique marker value. The pair remains a violation (so the S2
 #   total does not increase), but it becomes individually identifiable in the
 #   query result, which allows precision and recall to be measured.
 # ══════════════════════════════════════════════════════════════════
@@ -246,25 +246,25 @@ SELECT DISTINCT ?invoice ?fi ?invEvent ?clrEvent ?invUser ?clrUser WHERE {
 }
 LIMIT 20
 """))
-candidates["S3"] = {
+candidates["S2"] = {
     "description": (
-        "Set ext:userName of RecordInvoice event to 'User_INJECTED_S3'. "
+        "Set ext:userName of RecordInvoice event to 'User_INJECTED_S2'. "
         "This creates a new violation on top of the existing baseline: "
         "the ClearInvoice user remains unchanged, but the RecordInvoice user "
-        "now differs — so that S3 detects the injection as a new pair."
+        "now differs — so that S2 detects the injection as a new pair."
     ),
     "injection_type": "change_username_to_injected",
     "target_event_key": "inv_event",
-    "new_user": "User_INJECTED_S3",
+    "new_user": "User_INJECTED_S2",
     "candidates": [{"invoice": str(r.invoice), "fi": str(r.fi),
                     "inv_event": str(r.invEvent), "clr_event": str(r.clrEvent),
                     "inv_user": str(r.invUser), "clr_user": str(r.clrUser)} for r in rows],
     "selected": []
 }
-print(f"S3 candidates: {len(rows)}")
+print(f"S2 candidates: {len(rows)}")
 
 # ══════════════════════════════════════════════════════════════════
-# S5 — GR poster ≠ PO creator
+# S3 — GR poster ≠ PO creator
 # Injection: set userName of RecordGoodsReceipt event = userName of PO creator
 # Candidate: PO-GR pair where usernames are NOT equal
 # ══════════════════════════════════════════════════════════════════
@@ -283,7 +283,7 @@ SELECT DISTINCT ?po ?gr ?poEvent ?grEvent ?poUser ?grUser WHERE {
 }
 LIMIT 20
 """))
-candidates["S5"] = {
+candidates["S3"] = {
     "description": "Set ext:userName of RecordGoodsReceipt event equal to poUser",
     "injection_type": "change_username",
     "target_event_key": "gr_event",
@@ -293,7 +293,7 @@ candidates["S5"] = {
                     "po_user": str(r.poUser), "gr_user": str(r.grUser)} for r in rows],
     "selected": []
 }
-print(f"S5 candidates: {len(rows)}")
+print(f"S3 candidates: {len(rows)}")
 
 # ── Save candidate list ────────────────────────────────────────
 config_path = Path(__file__).parent / "injection_config.json"

@@ -116,23 +116,23 @@ def apply_b4(g, log):
                     "removed_count": len(triples)})
 
 
-def apply_d4(g, log):
-    print("── D4: Vendor mismatch ───────────────────────────────")
-    for item in check_selected("D4"):
+def apply_d1(g, log):
+    print("── D1: Vendor mismatch ───────────────────────────────")
+    for item in check_selected("D1"):
         inv = URIRef(item["invoice"])
         old = list(g.objects(inv, EXT.vendorId))
         g.remove((inv, EXT.vendorId, None))
         g.add((inv, EXT.vendorId, Literal("VENDOR_INJECTED", datatype=XSD.string)))
         print(f"  ✅ vendorId → VENDOR_INJECTED: {item['invoice'].split('/')[-1]}")
-        log.append({"constraint": "D4", "action": "change_vendor_id",
+        log.append({"constraint": "D1", "action": "change_vendor_id",
                     "invoice": item["invoice"], "po": item["po"],
                     "old_vendor": [str(v) for v in old],
                     "new_vendor": "VENDOR_INJECTED"})
 
 
-def apply_d6(g, log):
-    print("── D6: Amount tolerance ─────────────────────────────")
-    for item in check_selected("D6"):
+def apply_d2(g, log):
+    print("── D2: Amount tolerance ─────────────────────────────")
+    for item in check_selected("D2"):
         inv = URIRef(item["invoice"])
         po_value   = float(item["po_value"])
         new_amount = round(po_value * 2.0, 2)
@@ -140,7 +140,7 @@ def apply_d6(g, log):
         g.remove((inv, EXT.netAmount, None))
         g.add((inv, EXT.netAmount, Literal(new_amount, datatype=XSD.decimal)))
         print(f"  ✅ netAmount → {new_amount} (ratio 2.0): {item['invoice'].split('/')[-1]}")
-        log.append({"constraint": "D6", "action": "change_net_amount",
+        log.append({"constraint": "D2", "action": "change_net_amount",
                     "invoice": item["invoice"], "po": item["po"],
                     "po_value": po_value, "new_amount": new_amount})
 
@@ -159,14 +159,14 @@ def apply_s1(g, log):
                     "new_user": item["po_user"]})
 
 
-def apply_s3(g, log):
-    print("── S3: Invoice enterer ≠ payment poster ─────────────")
-    for item in check_selected("S3"):
+def apply_s2(g, log):
+    print("── S2: Invoice enterer ≠ payment poster ─────────────")
+    for item in check_selected("S2"):
         # Inject a NEW pair by:
         # 1. changing inv_user to a unique value
         # 2. changing clr_user to that same unique value
-        # Result: new pair with inv_user = clr_user = User_INJ_S3_[n]
-        new_user = f"User_INJ_S3_{item['invoice'].split('5105600')[1]}"
+        # Result: new pair with inv_user = clr_user = User_INJ_S2_[n]
+        new_user = f"User_INJ_S2_{item['invoice'].split('5105600')[1]}"
         inv_ev  = URIRef(item["inv_event"])
         clr_ev  = URIRef(item["clr_event"])
         g.remove((inv_ev, EXT.userName, None))
@@ -174,20 +174,20 @@ def apply_s3(g, log):
         g.remove((clr_ev, EXT.userName, None))
         g.add((clr_ev, EXT.userName, Literal(new_user, datatype=XSD.string)))
         print(f"  ✅ inv + clr userName → {new_user}: {item['invoice'].split('/')[-1]}")
-        log.append({"constraint": "S3", "action": "sync_inv_clr_username",
+        log.append({"constraint": "S2", "action": "sync_inv_clr_username",
                     "inv_event": item["inv_event"], "clr_event": item["clr_event"],
                     "new_user": new_user})
 
 
-def apply_s5(g, log):
-    print("── S5: GR poster ≠ PO creator ───────────────────────")
-    for item in check_selected("S5"):
+def apply_s3(g, log):
+    print("── S3: GR poster ≠ PO creator ───────────────────────")
+    for item in check_selected("S3"):
         ev  = URIRef(item["gr_event"])
         old = list(g.objects(ev, EXT.userName))
         g.remove((ev, EXT.userName, None))
         g.add((ev, EXT.userName, Literal(item["po_user"], datatype=XSD.string)))
         print(f"  ✅ userName RecordGR → {item['po_user']}: {item['gr_event'].split('/')[-1]}")
-        log.append({"constraint": "S5", "action": "change_username",
+        log.append({"constraint": "S3", "action": "change_username",
                     "event": item["gr_event"], "po": item["po"],
                     "old_user": [str(v) for v in old],
                     "new_user": item["po_user"]})
@@ -195,8 +195,8 @@ def apply_s5(g, log):
 
 APPLIERS = {
     "B1": apply_b1, "B2": apply_b2, "B3": apply_b3, "B4": apply_b4,
-    "D4": apply_d4, "D6": apply_d6,
-    "S1": apply_s1, "S3": apply_s3, "S5": apply_s5,
+    "D1": apply_d1, "D2": apply_d2,
+    "S1": apply_s1, "S2": apply_s2, "S3": apply_s3,
 }
 
 # ══════════════════════════════════════════════════════════════════

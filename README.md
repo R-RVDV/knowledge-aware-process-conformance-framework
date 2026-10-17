@@ -56,7 +56,7 @@ Use these numbers to check that your run matches the thesis.
 | Check | Expected |
 |---|---|
 | Triples in OCEDD / OCEDR | 238 / 64,724 |
-| Baseline violations B1, B2, B3, B4, D4, D6, S1, S3, S5 | 0, 5, 0, 5, 0, 5, 50, 53, 193 |
+| Baseline violations B1, B2, B3, B4, D1, D2, S1, S2, S3 | 0, 5, 0, 5, 0, 5, 50, 53, 193 |
 | Total after injection (same order) | 4, 9, 4, 9, 4, 9, 54, 53, 197 |
 | Model-wide conformance, all 390 Purchase Orders (restricted) | 33 fully conformant (8.5%) |
 | Model-wide conformance, the 44 POs with an invoice (restricted) | 33 fully conformant (75.0%) |

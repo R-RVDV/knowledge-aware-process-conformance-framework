@@ -1,6 +1,6 @@
 """
 Computes succinctness metrics for the 9 SPARQL conformance queries and their SQL
-equivalents (B1-B4, D4, D6, S1, S3, S5) and writes the results to succinctness_results/.
+equivalents (B1-B4, D1, D2, S1, S2, S3) and writes the results to succinctness_results/.
 The queries are only measured as text, not executed.
 
 Metrics, adapted from Vashistha and Jain (2016), with a SPARQL equivalent for each:
@@ -122,7 +122,7 @@ WHERE {
 ORDER BY DESC(?amount)
 """,
 
-"D4": """
+"D1": """
 SELECT ?invoice ?po ?invoiceVendor ?poVendor (MAX(?amt) AS ?amount)
 WHERE {
   ?po a ext:PurchaseOrder ;
@@ -140,7 +140,7 @@ GROUP BY ?invoice ?po ?invoiceVendor ?poVendor
 ORDER BY DESC(?amount)
 """,
 
-"D6": """
+"D2": """
 SELECT ?invoice ?po ?invoicedAmount ?poValue ?deviation
 WHERE {
   ?po a ext:PurchaseOrder ;
@@ -175,7 +175,7 @@ WHERE {
 ORDER BY ?user ?poDate
 """,
 
-"S3": """
+"S2": """
 SELECT ?user ?invoice ?fi ?invDate ?clearDate
 WHERE {
   ?invEvent a ext:RecordInvoice ;
@@ -193,7 +193,7 @@ WHERE {
 ORDER BY ?user ?invDate
 """,
 
-"S5": """
+"S3": """
 SELECT ?user ?po ?gr ?poDate ?grDate
 WHERE {
   ?poEvent a ext:CreatePurchaseOrder ;
@@ -291,7 +291,7 @@ GROUP BY rb.BELNR, ekko.EBELN
 ORDER BY amount DESC
 """,
 
-"D4": """
+"D1": """
 SELECT
     rb.BELNR   AS invoice,
     ekko.EBELN AS po,
@@ -309,7 +309,7 @@ GROUP BY rb.BELNR, ekko.EBELN, rb.LIFNR, ekko.LIFNR
 ORDER BY amount DESC
 """,
 
-"D6": """
+"D2": """
 SELECT DISTINCT
     rb.BELNR   AS invoice,
     ekko.EBELN AS po,
@@ -346,7 +346,7 @@ WHERE ekko.ERNAM = rb.USNAM
 ORDER BY user_name, po_date
 """,
 
-"S3": """
+"S2": """
 SELECT
     rb.USNAM AS user_name,
     rb.BELNR AS invoice,
@@ -360,7 +360,7 @@ WHERE rb.USNAM = bk.USNAM
 ORDER BY user_name, invoice_date
 """,
 
-"S5": """
+"S3": """
 SELECT DISTINCT
     ekko.ERNAM AS user_name,
     ekko.EBELN AS po,
